@@ -1,9 +1,30 @@
-<h1><%= @cocktail.name %></h1>
-<h3>Ingredient list :</h3>
-<ul><% @cocktail.doses.each do |dose|  %>
-  <li><%= dose.description %> of   <%= dose.ingredient.name %></li>
-  <% end %>
-</ul>
-<%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %>
-<%= link_to "Delete cocktail", cocktail_dose_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" } %>
-<%= link_to 'Back to list', cocktails_path %>
+<div class="container">
+  <div class="card">
+     <div class="card__image-container">
+       <img class="card__image" src="https://source.unsplash.com/random/900×700/?cocktail" alt="">
+    </div>
+
+      <svg class="card__svg" viewBox="0 0 800 500">
+
+        <path d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333"/>
+        <path class="card__line" d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent"/>
+      </svg>
+
+     <div class="card__content">
+        <br>
+        <h1 class="text-center"><%= @cocktail.name %></h1>
+        <h3 class="text-center">Ingredient list :</h3>
+        <ul><% @cocktail.doses.each do |dose|  %>
+          <li><%= dose.description %> of   <%= dose.ingredient.name %></li>
+        <% end %>
+        </ul>
+        <%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail) %>
+        <br>
+        <%= link_to cocktail_dose_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <br>
+        <%= link_to 'Back to list', cocktails_path %>
+    </div>
+  </div>
+</div>
